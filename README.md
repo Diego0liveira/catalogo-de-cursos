@@ -1,20 +1,24 @@
-# Catálogo de Cursos
+<p align="center">
+  <img src="frontend/src/assets/logo-technova.svg" alt="TechNova Academy" width="140" />
+</p>
+
+# <img src="frontend/src/assets/logo-technova.svg" alt="TechNova Academy" width="32" /> Catálogo de Cursos 🎓📚
 
 Aplicação de catálogo de cursos com backend Spring Boot (Java 17) e frontend Angular 19 em modo Standalone (sem NgModule), com suporte opcional a SSR.
 
-## Estrutura do Projeto
+## Estrutura do Projeto 🧱
 
 - `backend/` — API Spring Boot
 - `frontend/` — Aplicação Angular (Standalone + SSR opcional)
 
-## Pré‑requisitos
+## Pré‑requisitos ⚙️
 
 - Java 17 (JDK)
 - Node.js 18+ (recomendado 18 ou 20)
 - npm 9+
 - Angular CLI 19+ (opcional, você pode usar os scripts do `package.json`)
 
-## Backend (Spring Boot)
+## Backend (Spring Boot) 🧰
 
 - Instalação/Execução (Windows):
   - Na pasta `backend`: `.\mvnw.cmd spring-boot:run`
@@ -25,14 +29,14 @@ Aplicação de catálogo de cursos com backend Spring Boot (Java 17) e frontend 
   - Windows: `.\mvnw.cmd test`
   - Linux/macOS: `./mvnw test`
 
-### API REST (principais endpoints)
+### API REST (principais endpoints) 🔗
 
 - `GET /api/courses` — Lista todos os cursos
 - `GET /api/courses?titulo={termo}` — Busca cursos por título
 - `POST /api/courses` — Cria um novo curso
 - `GET /api/events` — Lista eventos de criação de cursos
 
-## Frontend (Angular)
+## Frontend (Angular) 💻
 
 - Instalação:
 
@@ -62,7 +66,7 @@ Aplicação de catálogo de cursos com backend Spring Boot (Java 17) e frontend 
   - Headless: `npm run e2e:headless` (garanta o frontend rodando antes)
   - Interativo: `npm run e2e` ou `npm run e2e:open`
 
-## Rodando tudo junto (Dev)
+## Rodando tudo junto (Dev) 🏃
 
 1. Inicie o backend:
    - Windows: `.\mvnw.cmd spring-boot:run`
@@ -71,7 +75,7 @@ Aplicação de catálogo de cursos com backend Spring Boot (Java 17) e frontend 
    - `cd frontend && npm start`
 3. Acesse `http://localhost:4200` (frontend) com chamadas ao backend via proxy `/api`.
 
-## Notas de Arquitetura (Frontend Standalone)
+## Notas de Arquitetura (Frontend Standalone) 🏗️
 
 - `AppComponent` é `standalone: true` (sem `AppModule`).
 - Bootstrap do cliente em `src/main.ts` com `bootstrapApplication(AppComponent, appConfig)`.
@@ -82,7 +86,7 @@ Aplicação de catálogo de cursos com backend Spring Boot (Java 17) e frontend 
   - `provideHttpClient()` (HTTP)
   - `provideAnimations()` (animações)
 
-## Scripts úteis (frontend)
+## Scripts úteis (frontend) 📜
 
 - `npm start` — `ng serve --proxy-config proxy.conf.json`
 - `npm run build` — Build de produção
@@ -93,7 +97,7 @@ Aplicação de catálogo de cursos com backend Spring Boot (Java 17) e frontend 
 - `npm run e2e:headless` — Cypress em modo headless
 - `npm run e2e` / `npm run e2e:open` — Cypress interativo
 
-## Solução de Problemas
+## Solução de Problemas 🧯
 
 - `NullInjectorError: No provider for HttpClient`:
   - Verifique se `provideHttpClient()` está em `app.config.ts`.
@@ -104,7 +108,7 @@ Aplicação de catálogo de cursos com backend Spring Boot (Java 17) e frontend 
 - Falhas de E2E por URL:
   - Certifique-se de que o frontend está em `http://localhost:4200` conforme `cypress.config.ts`.
 
-## Decisões Técnicas e Trade‑offs
+## Decisões Técnicas e Trade‑offs 🧠
 
 - Backend em Spring Boot 3.2 (Java 21) para compatibilidade e melhorias da plataforma; requisito pedia Java 17, adotamos 21 por ser 17+ e suportado no stack atual.
 - Persistência H2 em memória no perfil de desenvolvimento para rapidez; trade‑off: dados são voláteis entre execuções.
@@ -115,7 +119,7 @@ Aplicação de catálogo de cursos com backend Spring Boot (Java 17) e frontend 
 - Proxy do Angular (`/api` → `http://localhost:8080`) com `pathRewrite` para separar camadas e simular API Gateway em dev.
 - Testes unitários cobrindo serviços e componentes críticos; priorizamos correções que mantêm feedback de `loading/sucesso/erro` no formulário.
 
-## Proxy do Angular (API Gateway simulado)
+## Proxy do Angular (API Gateway simulado) 🔁
 
 - Arquivo: `frontend/proxy.conf.json`.
 - Mapeamento: requisições para `'/api'` são direcionadas para `http://localhost:8080`.
@@ -123,13 +127,13 @@ Aplicação de catálogo de cursos com backend Spring Boot (Java 17) e frontend 
 - Execução: `ng serve --proxy-config proxy.conf.json` (já encapsulado em `npm start`).
 - Benefício: evita CORS em dev e espelha roteamento de um API Gateway.
 
-## OpenAPI/Swagger (opcional)
+## OpenAPI/Swagger (opcional) 📖
 
 - Dependência: `springdoc-openapi-starter-webmvc-ui`.
 - Acesso em dev: `http://localhost:8080/swagger-ui/index.html`.
 - Especificação: `http://localhost:8080/v3/api-docs`.
 
-## Uso de IA
+## Uso de IA 🤖
 
 - Ferramenta: assistente de IA integrado ao IDE (Trae AI).
 - Onde ajudou:
