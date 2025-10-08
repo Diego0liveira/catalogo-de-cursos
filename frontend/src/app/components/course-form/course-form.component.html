@@ -55,7 +55,7 @@
             <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
             Salvar
           </button>
-          <a routerLink="/courses" class="btn btn-secondary">Cancelar</a>
+          <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancelar</button>
         </div>
       </form>
     </div>

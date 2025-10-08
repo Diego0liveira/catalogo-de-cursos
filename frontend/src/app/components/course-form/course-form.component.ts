@@ -86,6 +86,10 @@ export class CourseFormComponent implements OnInit {
       });
   }
 
+  onCancel(): void {
+    this.router.navigate(['/courses']);
+  }
+
   resetForm(): void {
     this.courseForm.reset({
       titulo: '',
