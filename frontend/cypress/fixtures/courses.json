@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "titulo": "Java Básico",
+    "categoria": "Programação",
+    "cargaHoraria": 40
+  },
+  {
+    "id": 2,
+    "titulo": "Angular Avançado",
+    "categoria": "Frontend",
+    "cargaHoraria": 60
+  },
+  {
+    "id": 3,
+    "titulo": "Spring Boot",
+    "categoria": "Backend",
+    "cargaHoraria": 50
+  },
+  {
+    "id": 4,
+    "titulo": "React Fundamentals",
+    "categoria": "Frontend",
+    "cargaHoraria": 45
+  },
+  {
+    "id": 5,
+    "titulo": "Python para Data Science",
+    "categoria": "Data Science",
+    "cargaHoraria": 80
+  }
+]

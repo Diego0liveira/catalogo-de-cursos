@@ -1,0 +1,165 @@
+<div class="container-fluid course-catalog" data-cy="course-list">
+  <!-- Header Section -->
+  <div class="header-section" data-cy="course-list-header">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <h1 class="page-title">
+            <i class="fas fa-graduation-cap me-3"></i>
+            Catálogo de Cursos
+          </h1>
+          <p class="page-subtitle">
+            Descubra novos conhecimentos e desenvolva suas habilidades
+          </p>
+        </div>
+        <div class="col-md-4 text-end">
+          <a
+            routerLink="/courses/new"
+            class="btn btn-primary btn-lg new-course-btn"
+            data-cy="new-course-btn"
+          >
+            <i class="fas fa-plus me-2"></i>
+            Novo Curso
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Section -->
+  <div class="search-section" data-cy="search-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div class="search-container d-flex align-items-center gap-2">
+            <button class="search-icon" type="button" aria-label="Pesquisar">
+              <i class="fas fa-search"></i>
+            </button>
+            <input
+              type="text"
+              class="search-input flex-grow-1"
+              placeholder="Buscar por título..."
+              (input)="search(searchInput.value)"
+              #searchInput
+            />
+            <button
+              class="search-btn"
+              type="button"
+              (click)="search(searchInput.value)"
+            >
+              Buscar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content Section -->
+  <div class="content-section">
+    <div class="container">
+      <!-- Loading State -->
+      <div *ngIf="loading" class="loading-state" data-cy="loading-state">
+        <div class="text-center">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <p class="loading-text mt-3">Carregando cursos...</p>
+        </div>
+      </div>
+
+      <!-- Error State -->
+      <div *ngIf="error" class="error-state" data-cy="error-state">
+        <div class="alert alert-danger" role="alert">
+          <i class="fas fa-exclamation-triangle me-2"></i>
+          Erro ao carregar cursos. Tente novamente mais tarde.
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div
+        *ngIf="!loading && !error && displayedCourses.length === 0"
+        class="empty-state"
+        data-cy="empty-state"
+      >
+        <div class="text-center">
+          <i class="fas fa-book-open empty-icon"></i>
+          <h3>Nenhum curso encontrado</h3>
+          <p class="text-muted">
+            Não há cursos disponíveis no momento ou sua busca não retornou
+            resultados.
+          </p>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div *ngIf="!loading && !error">
+        <!-- Courses Grid -->
+        <div *ngIf="displayedCourses.length > 0">
+          <!-- Results Info -->
+          <div class="results-info" data-cy="results-info">
+            <p class="text-muted mb-4">
+              <i class="fas fa-info-circle me-2"></i>
+              Exibindo {{ displayedCourses.length }} de
+              {{ allCourses.length }} cursos
+            </p>
+          </div>
+
+          <!-- Course Grid -->
+          <div class="courses-grid" data-cy="course-grid">
+            <div
+              *ngFor="let course of displayedCourses"
+              class="course-card"
+              [@slideIn]
+            >
+              <div class="card h-100">
+                <div class="card-body">
+                  <h5 class="card-title">{{ course.titulo }}</h5>
+                  <span class="badge course-category">{{
+                    course.categoria
+                  }}</span>
+                  <p class="card-text mt-3">
+                    <i class="fas fa-clock me-2"></i>
+                    {{ course.cargaHoraria }} horas
+                  </p>
+                </div>
+                <div class="card-footer text-center">
+                  <a
+                    [routerLink]="['/courses', course.id]"
+                    [state]="{ course: course }"
+                    class="btn btn-sm btn-outline-primary"
+                    data-cy="view-details-btn"
+                  >
+                    Ver detalhes
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Load More Button -->
+          <div *ngIf="hasMoreCourses" class="load-more-container">
+            <button
+              class="btn btn-outline-primary btn-lg load-more-btn"
+              (click)="loadMoreCourses()"
+              [disabled]="loadingMore"
+              data-cy="load-more-button"
+            >
+              <span *ngIf="!loadingMore">
+                <i class="fas fa-plus me-2"></i>
+                Ver mais cursos!
+              </span>
+              <span *ngIf="loadingMore">
+                <span
+                  class="spinner-border spinner-border-sm me-2"
+                  role="status"
+                ></span>
+                Carregando...
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

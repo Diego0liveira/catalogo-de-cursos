@@ -1,0 +1,22 @@
+<div class="container py-4">
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border text-primary" role="status"></div>
+    <p class="text-muted mt-3">Carregando detalhes...</p>
+  </div>
+
+  <div *ngIf="error && !loading" class="alert alert-danger">{{ error }}</div>
+
+  <div *ngIf="course && !loading" class="card">
+    <div class="card-body">
+      <h2 class="card-title">{{ course.titulo }}</h2>
+      <span class="badge course-category">{{ course.categoria }}</span>
+      <p class="mt-3 text-muted">
+        <i class="fas fa-clock me-2"></i>
+        {{ course.cargaHoraria }} horas
+      </p>
+      <div class="mt-4">
+        <button class="btn btn-secondary" (click)="voltar()">Voltar</button>
+      </div>
+    </div>
+  </div>
+</div>
